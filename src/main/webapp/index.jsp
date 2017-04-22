@@ -122,7 +122,7 @@
         </table>
  <%
  
- String altura = (request.getParamenter("altura");
+ String altura = request.getParamenter("altura");
  String op = request.getParamenter("sex");
  Strin peso = request.getParamenter("peso");
  String mensagem  = "";
@@ -164,8 +164,7 @@
     }
  %>
 	<div class="alert alert-<%=tipoMensagem%>" role="alert" style="margin-top:45px"><%=mensagem%></div>
-	<% }
-	}%>
+	<% }%>
 </div>
 </body>
 </html>
