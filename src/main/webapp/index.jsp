@@ -63,10 +63,61 @@
                             <button class="btn btn-sm btn-success">Calcular</button
                         </fieldset>
                     </form>
+							 <%
+ 
+ String altura = request.getParameter("altura");
+ String op = request.getParameter("sex");
+ String peso = request.getParameter("peso");
+ String mensagem  = "";
+ String tipoMensagem = "";
+
+
+ if(  altura != null && peso != null && ! altura.isEmpty() && ! peso.isEmpty() ){
+ altura = altura.replace(",", ".").replace("m".toLowerCase(), " ");
+ peso = peso.replace(",", ".").replace("kg".toLowerCase(), " ");
+
+ float weight = Float.parseFloat(peso);
+ float high = Float.parseFloat(altura);
+ float imc = weight/(high*high);
+ String result;
+
+ if (op.equals("Masculino")) {
+        if (imc < 20.00) {
+           mensagem = "Abaixo do peso";
+		   tipoMensagem = "warning";
+        }
+        else if (imc > 26.4) {
+            mensagem = "Acima do peso";
+			tipoMensagem = "warning";
+        }
+        else {
+            mensagem = "Peso normal";
+			tipoMensagem = "success";
+        }
+    }
+ else if (op.equals("Feminino")) {
+        if (imc < 19.1) {
+             mensagem  = "Abaixo do peso";
+			 tipoMensagem = "warning";
+        }	
+        else if (imc > 25.8) {
+            mensagem  = "Acima do peso";
+			tipoMensagem = "warning";
+        }	
+        else {
+           mensagem  = "Peso normal";
+		   tipoMensagem = "success";
+        }
+    }
+	result =String.format("%.2f", imc);
+ %>
+	<div class="alert alert-<%=tipoMensagem%>" role="alert" style="margin-top:15px"><%=mensagem%>      IMC: <%=result%></div>
+	<% }%>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="container col-md-6" style="float:left">
         <h2>Como funciona o calculo de IMC?</h2>
         <p>Primeiro é feito o calculo de acordo com a imagem a baixo:</p>
@@ -120,50 +171,6 @@
                 </tr>
             </tbody>
         </table>
- <%
- 
- String altura = request.getParameter("altura";
- String op = request.getParameter("sex");
- String peso = request.getParameter("peso");
- String mensagem  = "";
- String tipoMensagem = "";
-
- if(  altura != null && peso != null && ! altura.isEmpty() && ! peso.isEmpty() && peso!= null && ! peso.isEmpty()){
- float weight = Float.parseFloat(peso);
- float high = Float.parseFloat(altura);
- float imc = weight/(high*high);
-
- if (op.equals("Masculino")) {
-        if (imc < 20.00) {
-           mensagem = "Abaixo do peso";
-		   tipoMensagem = "warning";
-        }
-        else if (imc > 26.4) {
-            mensagem = "Acima do peso";
-			tipoMensagem = "warning";
-        }
-        else {
-            mensagem = "Peso normal";
-			tipoMensagem = "success";
-        }
-    }
- else if (op.equals("Feminino")) {
-        if (imc < 19.1) {
-             mensagem  = "Abaixo do peso";
-			 tipoMensagem = "warning";
-        }
-        else if (imc > 25.8) {
-            mensagem  = "Acima do peso";
-			tipoMensagem = "warning";
-        }
-        else {
-           mensagem  = "Peso normal";
-		   tipoMensagem = "success";
-        }
-    }
- %>
-	<div class="alert alert-<%=tipoMensagem%>" role="alert" style="margin-top:45px"><%=mensagem%></div>
-	<% }%>
-</div>
+	</div>
 </body>
 </html>
