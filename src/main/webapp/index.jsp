@@ -133,7 +133,6 @@
  float high = Float.parseFloat(high);
  float imc = weight/(high*high);
 
- if(request.getParamenter("sex") != null){
  if (op.equals("Masculino")) {
         if (imc < 20.00) {
            msg = "Abaixo do peso";
