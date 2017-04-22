@@ -122,28 +122,28 @@
         </table>
  <%
  
- String altura = request.getParamenter("altura");
- String op = request.getParamenter("sex");
- Strin peso = request.getParamenter("peso");
+ String altura = request.getParameter("altura";
+ String op = request.getParameter("sex");
+ String peso = request.getParameter("peso");
  String mensagem  = "";
  String tipoMensagem = "";
 
- if(  altura != null && peso != null && ! altura.isEmpty() && ! peso.isEmpty()){
+ if(  altura != null && peso != null && ! altura.isEmpty() && ! peso.isEmpty() && peso!= null && ! peso.isEmpty()){
  float weight = Float.parseFloat(peso);
- float high = Float.parseFloat(high);
+ float high = Float.parseFloat(altura);
  float imc = weight/(high*high);
 
  if (op.equals("Masculino")) {
         if (imc < 20.00) {
-           msg = "Abaixo do peso";
+           mensagem = "Abaixo do peso";
 		   tipoMensagem = "warning";
         }
         else if (imc > 26.4) {
-            msg = "Acima do peso";
+            mensagem = "Acima do peso";
 			tipoMensagem = "warning";
         }
         else {
-            msg = "Peso normal";
+            mensagem = "Peso normal";
 			tipoMensagem = "success";
         }
     }
